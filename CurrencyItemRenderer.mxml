@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	horizontalScrollPolicy="off" 
+	verticalScrollPolicy="off" 
+	horizontalGap="0" 
+	verticalAlign="middle"
+	mouseChildren="false"
+>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Image;
+			import mx.controls.Label;
+			
+			private var lblSymbol:Label;
+			private var lblCode:Label;
+			private var imgFlag:Image;
+			
+			override protected function createChildren(): void {
+				super.createChildren();
+				
+				// Create the components
+				lblSymbol = new Label();
+				lblCode = new Label();
+				imgFlag = new Image();
+				
+				// Styling the components
+				lblSymbol.width = 15;
+				lblCode.width = 30;
+				
+				addChild( lblSymbol );
+				addChild( lblCode );
+				addChild( imgFlag );
+			}
+			
+			override public function set data( value:Object ): void {
+				super.data = value;
+				
+				if ( value ) {
+					try {
+						var code:String = value as String;
+						
+						lblCode.text = code;
+						
+						lblSymbol.text = Currency[code + "symbol"];
+						imgFlag.source = Currency[code + "flag"];
+					} catch ( err:Error ) {
+						
+					}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+</mx:HBox>
