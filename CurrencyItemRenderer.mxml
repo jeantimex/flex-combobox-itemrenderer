@@ -15,6 +15,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.binding.utils.BindingUtils;
 			import mx.controls.Image;
 			import mx.controls.Label;
 			
@@ -47,9 +48,8 @@
 						var code:String = value as String;
 						
 						lblCode.text = code;
-						
-						lblSymbol.text = Currency[code + "symbol"];
-						imgFlag.source = Currency[code + "flag"];
+						lblSymbol.text = Currency.getSymbol( code );
+						imgFlag.source = Currency.getFlag( code );
 					} catch ( err:Error ) {
 						
 					}
